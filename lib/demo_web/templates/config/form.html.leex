@@ -1,0 +1,33 @@
+<%= for {side_key, side} <- @sides do %>
+<h3><%= side.name %></h3>
+<div>
+  <button phx-click="add_level_<%= side_key %>">Add level</button>
+</div>
+<%= for level <- side.levels do %>
+<%= f = form_for level.changeset, "#", [phx_submit: :save_level] %>
+  <fieldset>
+    <%= label f, :level %>
+    <%= text_input f, :level %>
+    <%= error_tag f, :level %>
+  </fieldset>
+  <fieldset>
+    <%= label f, :step %>
+    <%= text_input f, :step %>
+    <%= error_tag f, :step %>
+  </fieldset>
+  <fieldset>
+    <%= label f, :volume %>
+    <%= text_input f, :volume %>
+    <%= error_tag f, :volume %>
+  </fieldset>
+  <fieldset>
+    <%= label f, :genere %>
+    <%= text_input f, :genere %>
+    <%= error_tag f, :genere %>
+  </fieldset>
+  <div>
+    <%= submit "Save", phx_disable_with: "Saving..." %>
+  </div>
+</form>
+<% end %>
+<% end %>
